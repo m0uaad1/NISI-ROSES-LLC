@@ -1,67 +1,203 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAP Garland, LLC</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NISI ROSES LLC — Rose Boutique</title>
+  <meta name="description" content="NISI ROSES LLC in Sacramento — premium roses, bouquets, and floral gifts with delivery and custom arrangements."/>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: #333;
+    :root{
+      --primary:#FF6FAE;   /* Pink */
+      --accent:#6B4226;    /* Brown */
+      --ink:#0b0b0b;
+      --muted:#5b6370;
+      --card:#ffffff;
+      --bg:#ffffff;
     }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    /* Header */
+    header{background:var(--accent); color:#fff; position:sticky; top:0; z-index:10; box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .topbar{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px}
+    .brand{font-weight:900; letter-spacing:.4px}
+    nav a{display:inline-block; padding:10px 14px; border-radius:12px; color:#ffe6ef; font-weight:700}
+    nav a:hover{background:rgba(255,255,255,.16)}
+    .cta-btn{background:var(--primary); color:#4a1f14; padding:10px 14px; border-radius:12px; font-weight:800}
+
+    /* Hero */
+    .hero-wrap{background:linear-gradient(180deg,#fff,#fff5f9); padding:42px 24px}
+    .hero-card{
+      background:var(--card); border:1px solid rgba(0,0,0,.06); border-radius:22px;
+      box-shadow:0 30px 60px rgba(0,0,0,.12); padding:28px;
+      display:grid; grid-template-columns:1.15fr .85fr; gap:22px; overflow:hidden;
+      transform:translateY(24px); opacity:0; animation:cardIn .9s ease-out .15s forwards;
     }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    h1, h2 {
-      color: #003366;
-    }
-    .contact {
-      background: #fff;
-      padding: 20px;
-      border-left: 5px solid #003366;
-      margin-top: 30px;
-    }
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 50px;
+    @keyframes cardIn{to{transform:translateY(0);opacity:1}}
+    .hero-badge{display:inline-flex; align-items:center; gap:10px; background:#4a2a19; color:var(--primary); padding:6px 12px; border-radius:999px; font-size:.9rem; font-weight:800}
+    .hero-title{font-size:clamp(26px,4vw,42px); line-height:1.15; margin:14px 0 10px; font-weight:900}
+    .hero-title .grad{background:linear-gradient(90deg,var(--primary),#ff9cc6); -webkit-background-clip:text; color:transparent}
+    .hero-sub{font-size:1.02rem; color:#2f3440}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .btn{border:2px solid var(--accent); color:#fff; background:var(--accent); padding:12px 18px; border-radius:14px; font-weight:800}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 8px 16px rgba(0,0,0,.15)}
+    .btn.secondary{background:var(--primary); color:#4a1f14; border-color:var(--primary)}
+    .hero-media{border-radius:18px; overflow:hidden; aspect-ratio:4/3; background:#fff1f7;
+      display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:8px}
+    .hero-media img{object-fit:cover; width:100%; height:100%}
+
+    /* Sections */
+    section{padding:56px 24px}
+    section h2{font-size:clamp(22px,3vw,32px); margin:0 0 14px; font-weight:900}
+    .muted{color:var(--muted)}
+
+    /* Cards */
+    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
+    .card{border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:16px; background:#fff; box-shadow:0 8px 24px rgba(0,0,0,.06);
+      transform:translateY(14px); opacity:0}
+    .card.reveal{animation:reveal .7s ease-out forwards}
+    @keyframes reveal{to{transform:translateY(0); opacity:1}}
+
+    /* Gallery */
+    .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+    .gallery img{border-radius:14px; aspect-ratio:4/3; object-fit:cover}
+
+    /* Contact */
+    .contact-box{background:var(--primary); color:#4a1f14; border-radius:18px; padding:20px; display:grid; gap:8px; border:1px solid rgba(0,0,0,.06)}
+    .contact-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+    .contact-actions a{display:inline-block; background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:800}
+
+    footer{background:var(--accent); color:#ffd8e8; padding:18px; text-align:center; font-weight:700}
+
+    @media (max-width:820px){
+      .hero-card{grid-template-columns:1fr; padding:20px}
+      .gallery{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <h1>CAP Garland, LLC</h1>
-    <p>Private Investment Fund</p>
+    <div class="topbar container">
+      <div class="brand">NISI ROSES LLC</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#products">Bouquets</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact" class="cta-btn">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <section>
-    <h2>About Us</h2>
-    <p>CAP Garland, LLC is a Washington-based private investment fund focused on delivering value through diversified investment strategies.</p>
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="container">
+      <div class="hero-card">
+        <div>
+          <span class="hero-badge">Rose Boutique • Flowers & Gifts</span>
+          <h1 class="hero-title">Say it with roses. <span class="grad">Every day, any occasion.</span></h1>
+          <p class="hero-sub">Premium roses, hand-tied bouquets, and custom arrangements with local delivery across Sacramento.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#products">Shop Bouquets</a>
+            <a class="btn secondary" href="#contact">Order Now</a>
+          </div>
+          <p class="muted" style="margin-top:10px;">
+            Sacramento, CA 95833 • +1 760 437 3754 • hello@crystiq.shop
+          </p>
+        </div>
+        <div class="hero-media">
+          <img src="https://i.pinimg.com/originals/d5/59/60/d559601162ce162359c87a27fa264e8d.jpg" alt="Pink rose bouquet">
+          <img src="https://img.alicdn.com/imgextra/i2/6000000004850/O1CN01jFJMgz1lhLehg9xcz_!!6000000004850-0-tbvideo.jpg" alt="Florist arranging roses">
+          <img src="https://avatars.mds.yandex.net/get-altay/8093564/2a00000188e8b7d366cd74cef300fd2ce20c/orig" alt="Gift roses on table">
+          <img src="https://media.timeout.com/images/101714375/750/422/image.jpg" alt="Flower shop counter">
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- About -->
+  <section id="about" class="container">
+    <h2>About Us</h2>
+    <p class="muted">
+      We specialize in premium roses and modern floral design. Whether it’s birthdays, proposals, sympathy, or “just because,”
+      our florists craft arrangements that feel personal and timeless.
+    </p>
+    <div class="cards" style="margin-top:12px">
+      <article class="card reveal"><strong>Signature Roses:</strong> Long-stemmed, color-matched, and lush.</article>
+      <article class="card reveal"><strong>Custom Work:</strong> Bespoke palettes and sizes for any occasion.</article>
+      <article class="card reveal"><strong>Same-Day Delivery:</strong> Sacramento & nearby neighborhoods.</article>
+      <article class="card reveal"><strong>Care Tips:</strong> Guidance to keep your blooms fresh longer.</article>
+    </div>
+  </section>
+
+  <!-- Bouquets / Products -->
+  <section id="products" class="container">
+    <h2>Bouquets</h2>
+    <div class="cards">
+      <article class="card reveal">
+        <h3>Classic Dozen</h3>
+        <p>12 premium roses with seasonal greenery. Choose your color.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Grand Romance</h3>
+        <p>24 hand-tied roses with eucalyptus and satin wrap.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Pastel Garden</h3>
+        <p>Soft pinks and creams with textural fillers for a dreamy look.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Custom Arrangement</h3>
+        <p>Tell us the occasion and budget—we’ll design it to match.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="container">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://i.pinimg.com/originals/d5/59/60/d559601162ce162359c87a27fa264e8d.jpg" alt="Rose bouquet">
+      <img src="https://img.alicdn.com/imgextra/i2/6000000004850/O1CN01jFJMgz1lhLehg9xcz_!!6000000004850-0-tbvideo.jpg" alt="Florist at work">
+      <img src="https://avatars.mds.yandex.net/get-altay/8093564/2a00000188e8b7d366cd74cef300fd2ce20c/orig" alt="Bouquet closeup">
+      <img src="https://media.timeout.com/images/101714375/750/422/image.jpg" alt="Shop interior">
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
     <h2>Contact</h2>
-    <div class="contact">
-      <p><strong>Address:</strong> 915 W 2nd Ave, Spokane, WA 99201</p>
-      <p><strong>Email:</strong> <a href="mailto:ryanberg@capgarland.shop">ryanberg@capgarland.shop</a></p>
-      <p><strong>Phone:</strong> (509) 822-3850</p>
+    <div class="contact-box">
+      <div><strong>Company:</strong> NISI ROSES LLC</div>
+      <div><strong>Domain:</strong> Rose Boutique & Floral Design</div>
+      <div><strong>Address:</strong> Sacramento, CA 95833, United States</div>
+      <div><strong>Phone:</strong> +1 760 437 3754</div>
+      <div><strong>Email:</strong> hello@crystiq.shop</div>
+      <div class="contact-actions">
+        <a href="mailto:hello@crystiq.shop?subject=Order%20Inquiry%20-%20NISI%20ROSES" target="_blank" rel="noopener">Email Us</a>
+        <a href="tel:+17604373754">Call Now</a>
+        <a href="https://wa.me/17604373754" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sacramento,+CA+95833" target="_blank" rel="noopener">Open Map</a>
+      </div>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 CAP Garland, LLC. All rights reserved.
+    © 2025 NISI ROSES LLC — All rights reserved
   </footer>
+
+  <script>
+    // Reveal-on-scroll for cards
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('reveal'); observer.unobserve(e.target); }
+      })
+    }, {threshold:.15});
+    document.querySelectorAll('.card').forEach(el=>observer.observe(el));
+  </script>
 </body>
 </html>
